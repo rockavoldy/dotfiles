@@ -1,0 +1,7 @@
+antigen use oh-my-zsh
+antigen bundle git
+antigen bundle yarn
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen theme dracula/zsh
+antigen apply

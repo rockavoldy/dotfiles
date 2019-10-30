@@ -9,27 +9,28 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins "
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'othree/yajs.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
 Plugin 'Raimondi/delimitMate'
 Plugin 'posva/vim-vue'
 Plugin 'alvan/vim-closetag'
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmt'
-Plugin 'google/vim-glaive'
-Plugin 'joshdick/onedark.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'neoclide/coc.nvim'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
 filetype plugin indent on
+
+" --- start deoplete --- "
+let g:deoplete#enable_at_startup = 1
 
 " nerdtree "
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
@@ -42,6 +43,7 @@ augroup mySyntastic
   au!
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
+let g:javascript_plugin_jsdoc = 1
 
 " ----- Raimondi/delimitMate settings -----
 let delimitMate_expand_cr = 1
@@ -61,28 +63,41 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-" --- autoformat --- "
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-  autocmd FileType vue AutoFormatBuffer prettier
-augroup END
+" --- theme lightline --- "
+let g:lightline = {
+\   'colorscheme': 'palenight',
+\   'active': {
+\     'left': [ [ 'mode', 'paste' ],
+\               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+\   },
+\   'component_function': {
+\     'gitbranch': 'fugitive#head'
+\   }
+\ }
 
-" --- onedaark tehem -- "
-let g:onedark_termcolors = 256
-let g:onedark_terminal_italics = 1
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
 
+if (has("termguicolors"))
+  set termguicolors
+endif
 
-" --- irline --- "
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" --- tabs --- "
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " General Settings "
 set backspace=indent,eol,start
@@ -95,6 +110,8 @@ set number
 set showcmd
 set incsearch
 set hlsearch
-colorscheme onedark
+set noshowmode
+set background=dark
+colorscheme palenight
 
 syntax on

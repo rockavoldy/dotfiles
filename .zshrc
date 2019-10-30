@@ -1,3 +1,7 @@
+# antigen
+source $HOME/.antigen/antigen.zsh
+antigen init $HOME/.antigenrc
+
 # export things
 # language LC
 export LC_ALL=en_US.UTF-8
@@ -15,23 +19,10 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-
-# oh-my-zsh configuration
-export ZSH=$HOME/.oh-my-zsh
-
-ZSH_THEME="robbyrussell"
-DISABLE_AUTO_UPDATE="true"
-# plugins oh-my-zsh
-plugins=(git yarn)
-
-source $ZSH/oh-my-zsh.sh
-
-
 # User configuration
 export EDITOR='nvim'
 
 # alias
 alias scli="sequelize-cli"
+alias vim="nvim"
 alias edit="nvim"
-
-
