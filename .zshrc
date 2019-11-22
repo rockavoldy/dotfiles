@@ -26,3 +26,5 @@ export EDITOR='nvim'
 alias scli="sequelize-cli"
 alias vim="nvim"
 alias edit="nvim"
+alias findnodemodules="find . -name 'node_modules' -type d -prune -print | xargs du -chs"
+alias delnodemodules="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;"
