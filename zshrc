@@ -13,3 +13,4 @@ export PATH=$HOME/sbin:/usr/local/sbin:$PATH
 export PATH="/usr/local/opt/php@7.3/bin:$PATH"
 export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
 export PATH=$HOME/bin:~/.composer/vendor/bin:$PATH
+export PATH="/usr/local/opt/node@12/bin:$PATH"
