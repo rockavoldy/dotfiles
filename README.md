@@ -25,3 +25,12 @@
     ```sh
     curl -sLk https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
     ```
+8. Lock and unlock the Dock on macOS
+    1. Lock the dock
+        ```sh
+        defaults write com.apple.Dock position-immutable -bool false; killall Dock
+        ```
+    2. Unlock the dock
+        ```sh
+        defaults write com.apple.Dock size-immutable -bool true; killall Dock
+        ```
